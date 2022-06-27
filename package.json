@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/viniciusz1/atividade_avaliativa_biblioteta_vinicius_bonatti_benner/issues"
   },
-  "homepage": "https://github.com/viniciusz1/atividade_avaliativa_biblioteta_vinicius_bonatti_benner#readme"
+  "homepage": "https://github.com/viniciusz1/atividade_avaliativa_biblioteta_vinicius_bonatti_benner#readme",
+  "dependencies": {
+    "firebase": "^9.8.4"
+  }
 }
