@@ -22,7 +22,7 @@ const firebaseConfig = {
     appId: "1:61615691749:web:6ced927423b33754f8810c",
     measurementId: "G-C0VHPF86D5"
   };
-
+//funcoes no controller e no handller tudo as rota
 
 const app = initializeApp(firebaseConfig);
 
