@@ -19,7 +19,7 @@ async function adicionar(){
         sim: "aghan",
         nao: "osifdjao"
     }
-    const dados = await crud.save('pessoas', 'FbI8reVMAb90RveeTfVb', objeto)
+    const dados = await crud.save('editora', 'FbI8reVMAb90RveeTfVb', objeto)
     console.log(dados);
 }
 
