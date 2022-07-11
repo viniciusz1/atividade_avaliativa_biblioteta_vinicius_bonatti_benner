@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const clientesHandleer = require('./clientes.handler')
+const clientesHandler = require('./clientes.handler')
 
-router.get('/', (req, res) => {
-    
+router.post('/', (req, res) => {
+    res.json(clientesHandler.adicionarCliente(req.body))
 })
-
+router.get('/', (req, res) => {
+    res.json(clientesHandler.buscarCliente())
+})
 module.exports = router;

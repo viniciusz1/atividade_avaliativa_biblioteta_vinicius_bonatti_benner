@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const autoresHandleer = require('./autores.handler')
+const autoresHandler = require('./autores.handler')
 
-router.get('/', (req, res) => {
-    res.send("<h1>O BONATTI É MUITO LINDO</h1>")
+router.post('/', (req, res) => {
+    res.json(autoresHandler.adicionarAutores(req.body))
 })
-
+router.get('/', (req, res) => {
+    res.json(autoresHandler.buscarAutores())
+})
 module.exports = router;
