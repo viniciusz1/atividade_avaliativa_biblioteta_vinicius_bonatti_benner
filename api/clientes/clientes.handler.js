@@ -1,15 +1,22 @@
+
+
 async function adicionarCliente(dadosParametro){
-    const crud = require('./../../crud');
     const dados = await crud.save('clientes','1',dadosParametro)
     console.log(dados)
 }
 
 async function buscarCliente(){     
     const crud = require('./../../crud');
-    return await crud.get('livros')
+    return await crud.get('clientes')
 }
+async function buscarClientesPorId(idCliente){
+    const crud = require('./../../crud');    
+    return await crud.getById('clientes', idCliente)
+}
+
 
 module.exports = {
     adicionarCliente,
-    buscarCliente
+    buscarCliente,
+    buscarClientesPorId
 }

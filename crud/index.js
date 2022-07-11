@@ -71,7 +71,6 @@ async function get(nomeTabela) {
 async function getById(nomeTabela, id) {
     const docRef = doc(db, nomeTabela, id);
     const docSnap = await getDoc(docRef);
-    
     if (docSnap.exists()) {
       return docSnap.data();
     } else {
