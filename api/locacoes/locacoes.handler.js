@@ -2,12 +2,22 @@ const clientesHandler = require('../clientes/clientes.handler')
 const crud = require('./../../crud');
 
 
-async function verificaSeLivroJaFoiAlugado(){
-    
+async function verificaSeLivroJaFoiAlugado(isbnLivro){
+    let livroElocacoes = await buscarLocacoes()
+    // let locacao = await
+
+    for(let i of locacoes){
+        if(isbnLivro == livroElocacoes.isbnLivro){
+            return true
+        }
+    }
+    return false
 }
 
 
 async function adicionarLocacao(dadosParametro){
+    // o livro alugado não pode ser alugado por outro cliente
+    console.log(verificaSeLivroJaFoiAlugado(dadosParametro.))
 
     let locacoes = await buscarLocacoes()
     if(!locacoes.some(e => e.idCliente == dadosParametro.idCliente)){ // caso o cliente já ter um aluguel
@@ -17,7 +27,7 @@ async function adicionarLocacao(dadosParametro){
         for(let i of dadosParametro.livros){
             let locacoesELivrosObj = {
                 idLocacoes: dados.id,
-                isbnLivro: dadosParametro.livros[i]
+                isbnLivro: dadosParametro.livros[i-1]
             }
             novosDados = await crud.save('locacoesELivros', null, locacoesELivrosObj)
         }
