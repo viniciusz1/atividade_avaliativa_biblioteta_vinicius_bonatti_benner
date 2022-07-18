@@ -4,8 +4,7 @@ const router = express.Router();
 const livrosHandler = require('./livros.handler')
 
 router.post('/', (req, res) => {
-    livrosHandler.adicionarLivro(req.body)
-    res.json("po")
+    res.json(livrosHandler.adicionarLivro(req.body))
 })
 router.get('/', (req, res) => {
     res.json(livrosHandler.buscarLivros())

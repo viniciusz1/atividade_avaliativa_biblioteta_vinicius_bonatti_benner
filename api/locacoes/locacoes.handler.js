@@ -15,17 +15,15 @@ async function adicionarLocacao(dadosParametro){// retorno idCliente: 2, livros:
     const locacaoCliente = await verificaSeClienteJaTemUmAluguel(dadosParametro.idCliente)
     if(!locacaoCliente){ // caso o cliente já ter um aluguel -- ok
         for(let i of dadosParametro.livros){ //Atribui os valores a tabela locacoesELivros
-            locacoesELivrosObj={}
             const estaAlugado = await verificaSeLivroJaFoiAlugado(i)
             if(estaAlugado){
                 console.log("acho que ta alugado mano")
             }else{
                 const dados = await crud.save('locacoes', null, {idCliente: dadosParametro.idCliente})
-                locacoesELivrosObj = {
+                await crud.save('locacoesELivros', null, {
                     idLocacoes: dados.id,
                     isbnLivro: dadosParametro.livros[i-1]
-                }
-                await crud.save('locacoesELivros', null, locacoesELivrosObj)
+                })
                 console.log("acho que não ta alugado mano")
             }         
         }
