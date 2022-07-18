@@ -1,17 +1,22 @@
 
+    const crud = require('./../../crud');
 
 async function adicionarCliente(dadosParametro){
-    const dados = await crud.save('clientes','1',dadosParametro)
-    console.log(dados)
+    await crud.save('clientes',null,{cpf: dadosParametro.cpf})
+    const infoPessoa = {
+        nome: dadosParametro.nome,
+        email: dadosParametro.email
+    }
+    await crud.save('pessoas',dadosParametro.cpf,infoPessoa)
+    return dadosParametro
 }
 
 async function buscarCliente(){     
-    const crud = require('./../../crud');
     return await crud.get('clientes')
 }
 async function buscarClientesPorId(idCliente){
-    const crud = require('./../../crud');    
     return await crud.getById('clientes', idCliente)
+    
 }
 
 

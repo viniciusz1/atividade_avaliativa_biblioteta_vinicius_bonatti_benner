@@ -1,40 +1,41 @@
 const clientesHandler = require('../clientes/clientes.handler')
 const crud = require('./../../crud');
 
-
 async function verificaSeLivroJaFoiAlugado(isbnLivro){
-    let livroElocacoes = await buscarLocacoes()
-    // let locacao = await
-
-    for(let i of locacoes){
-        if(isbnLivro == livroElocacoes.isbnLivro){
-            return true
-        }
-    }
-    return false
+    let livroElocacoes = await buscarlocacoesELivros()    
+    return livroElocacoes.some(e => e.isbnLivro == isbnLivro)
 }
 
+async function verificaSeClienteJaTemUmAluguel(idCliente){    
+    let locacoes = await buscarLocacoes() 
+    return locacoes.some(e => e.idCliente == idCliente) //Retorna verdadeiro caso tiver um aluguel
+}
 
-async function adicionarLocacao(dadosParametro){
-    // o livro alugado não pode ser alugado por outro cliente
-    console.log(verificaSeLivroJaFoiAlugado(dadosParametro.))
-
-    let locacoes = await buscarLocacoes()
-    if(!locacoes.some(e => e.idCliente == dadosParametro.idCliente)){ // caso o cliente já ter um aluguel
-        objClienteId = {idCliente: dadosParametro.idCliente}
-        const dados = await crud.save('locacoes', null, objClienteId)
-        let novosDados = {}
-        for(let i of dadosParametro.livros){
-            let locacoesELivrosObj = {
-                idLocacoes: dados.id,
-                isbnLivro: dadosParametro.livros[i-1]
-            }
-            novosDados = await crud.save('locacoesELivros', null, locacoesELivrosObj)
+async function adicionarLocacao(dadosParametro){// retorno idCliente: 2, livros: [ 1, 2, 3, 4, 5 ]
+    const locacaoCliente = await verificaSeClienteJaTemUmAluguel(dadosParametro.idCliente)
+    if(!locacaoCliente){ // caso o cliente já ter um aluguel -- ok
+        for(let i of dadosParametro.livros){ //Atribui os valores a tabela locacoesELivros
+            locacoesELivrosObj={}
+            const estaAlugado = await verificaSeLivroJaFoiAlugado(i)
+            if(estaAlugado){
+                console.log("acho que ta alugado mano")
+            }else{
+                const dados = await crud.save('locacoes', null, {idCliente: dadosParametro.idCliente})
+                locacoesELivrosObj = {
+                    idLocacoes: dados.id,
+                    isbnLivro: dadosParametro.livros[i-1]
+                }
+                await crud.save('locacoesELivros', null, locacoesELivrosObj)
+                console.log("acho que não ta alugado mano")
+            }         
         }
     }else{
         console.log("este cliente já tem um livro em locação")
     }
+}
 
+async function buscarlocacoesELivros(){     
+    return await crud.get('locacoesELivros')
 }
 
 async function buscarLocacoes(){     
