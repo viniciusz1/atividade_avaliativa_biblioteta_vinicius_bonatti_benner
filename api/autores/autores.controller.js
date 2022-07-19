@@ -9,8 +9,8 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
     res.json(autoresHandler.buscarAutores())
 })
-router.put('/', (req, res) => {
-    res.json(autoresHandler.editarAutor())
+router.put('/:id', (req, res) => {    
+    res.json(autoresHandler.editarAutor(req.params.id, req.body))
 })
 router.delete('/:id', (req, res) => {
     res.json(autoresHandler.deletarAutor(req.params.id))

@@ -21,6 +21,12 @@ async function adicionarLivro(dadosParametro){//Só funciona se o autor existir
 }
 
 
+async function editarLivro(livro){
+    return await crud.save('livros', 'FbI8reVMAb90RveeTfVb', livro)
+}
+async function deletarLivro(idLivro){
+    return await crud.remove('livros', idLivro)
+}
 
 async function buscarLivros(){     
     return await crud.get('livros')

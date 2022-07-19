@@ -40,6 +40,17 @@ async function buscarLocacoes(){
     return await crud.get('locacoes')
 }
 
+async function editarLocacoes(locacao){
+    return await crud.save('locacoes', 'FbI8reVMAb90RveeTfVb', locacao)
+}
+async function deletarLocacao(idLocacao){
+    return await crud.remove('locacoes', idLocacao)
+}
+
+async function buscarLocacao(){     
+    return await crud.get('locacoes')
+}
+
 module.exports = {
     adicionarLocacao,
     buscarLocacoes

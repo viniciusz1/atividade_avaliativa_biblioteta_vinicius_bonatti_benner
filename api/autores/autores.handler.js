@@ -12,18 +12,19 @@ async function verificaSeAutorExiste(id){
     const autor = await buscarAutor();
     return autor.some(e => e.id == id);
 }
-
-async function buscarAutor(){     
+async function buscarAutores(){     
     return await crud.get('autores')
 }
-async function editarAutor(){
-    return await crud.get()
+async function editarAutor(idAutor, autor){
+    return await crud.save('editora', idAutor, autor)
 }
 async function deletarAutor(idAutor){
     return await crud.remove('autores', idAutor)
 }
 module.exports = {
     adicionarAutor,
-    buscarAutor,
-    verificaSeAutorExiste
+    buscarAutores,
+    verificaSeAutorExiste,
+    editarAutor,
+    deletarAutor
 }
