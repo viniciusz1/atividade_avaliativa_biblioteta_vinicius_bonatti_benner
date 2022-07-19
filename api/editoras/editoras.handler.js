@@ -1,6 +1,6 @@
+const crud = require('./../../crud');
 async function adicionar(dadosParametro){
-    const crud = require('./../../crud');
-    const dados = await crud.save('editora','1',dadosParametro)
+    const dados = await crud.save('editora', dadosParametro.id, {nome: dadosParametro.nome})
     console.log(dados)
 }
 

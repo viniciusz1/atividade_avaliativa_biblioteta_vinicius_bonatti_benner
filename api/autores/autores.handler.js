@@ -1,15 +1,29 @@
-async function adicionarCliente(dadosParametro){
-    const crud = require('./../../crud');
-    const dados = await crud.save('clientes','1',dadosParametro)
-    console.log(dados)
+const crud = require('./../../crud');
+async function adicionarAutor(dadosParametro){
+    await crud.save('autores',null,{cpf: dadosParametro.cpf})
+    await crud.save('pessoas',dadosParametro.cpf,{
+        nome: dadosParametro.nome,
+        email: dadosParametro.email
+    })
+    return dadosParametro
 }
 
-async function buscarCliente(){     
-    const crud = require('./../../crud');
-    return await crud.get('livros')
+async function verificaSeAutorExiste(id){
+    const autor = await buscarAutor();
+    return autor.some(e => e.id == id);
 }
 
+async function buscarAutor(){     
+    return await crud.get('autores')
+}
+async function editarAutor(){
+    return await crud.get()
+}
+async function deletarAutor(idAutor){
+    return await crud.remove('autores', idAutor)
+}
 module.exports = {
-    adicionarCliente,
-    buscarCliente
+    adicionarAutor,
+    buscarAutor,
+    verificaSeAutorExiste
 }

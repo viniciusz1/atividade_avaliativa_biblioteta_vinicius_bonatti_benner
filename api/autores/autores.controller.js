@@ -4,9 +4,15 @@ const router = express.Router();
 const autoresHandler = require('./autores.handler')
 
 router.post('/', (req, res) => {
-    res.json(autoresHandler.adicionarAutores(req.body))
+    res.json(autoresHandler.adicionarAutor(req.body))
 })
 router.get('/', (req, res) => {
     res.json(autoresHandler.buscarAutores())
+})
+router.put('/', (req, res) => {
+    res.json(autoresHandler.editarAutor())
+})
+router.delete('/:id', (req, res) => {
+    res.json(autoresHandler.deletarAutor(req.params.id))
 })
 module.exports = router;
