@@ -1,7 +1,7 @@
 const crud = require('./../../crud');
 
-async function adicionar(dadosParametro){
-    const dados = await crud.save('editoras', dadosParametro.id, {nome: dadosParametro.nome})
+async function adicionarEditora(dadosParametro){
+    const dados = await crud.save('editoras', dadosParametro.cnpj, {nome: dadosParametro.nome})
     console.log(dados)
 }
 
@@ -11,10 +11,10 @@ async function buscarEditoras(){
 async function editarEditora(editora){
     return await crud.save('editoras', 'FbI8reVMAb90RveeTfVb', editora)
 }
-async function deletarEditora(idEditora){
-    return await crud.remove('editoras', idEditora)
+async function deletarEditora(cnpjEditora){
+    return await crud.remove('editoras', cnpjEditora)
 }
 
 module.exports = {
-    adicionar
+    adicionarEditora
 };

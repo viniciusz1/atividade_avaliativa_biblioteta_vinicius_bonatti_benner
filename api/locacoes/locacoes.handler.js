@@ -22,7 +22,7 @@ async function adicionarLocacao(dadosParametro){// retorno idCliente: 2, livros:
                 const dados = await crud.save('locacoes', null, {idCliente: dadosParametro.idCliente})
                 await crud.save('locacoesELivros', null, {
                     idLocacoes: dados.id,
-                    isbnLivro: dadosParametro.livros[i-1]
+                    isbnLivro: i
                 })
                 console.log("acho que não ta alugado mano")
             }         
