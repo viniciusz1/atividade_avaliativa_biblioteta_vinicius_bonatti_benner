@@ -19,7 +19,10 @@ async function adicionarLivro(dadosParametro){//Só funciona se o autor existir
         }
     } 
 }
-
+async function verificaSeLivroExiste(isbn){
+    let livro = await buscarLivros() 
+    return livro.some(e => e.isbn == isbn)
+}
 
 async function editarLivro(livro){
     return await crud.save('livros', 'FbI8reVMAb90RveeTfVb', livro)
