@@ -13,14 +13,25 @@ const {
 } = require('firebase/firestore/lite');
 //query -- consulta
 //where -- adicionar condições
+
+
+// Import the functions you need from the SDKs you need
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+
+
+// Initialize Firebase
+
+
 const firebaseConfig = {
-    apiKey: "AIzaSyDdCIWYJg4nMgQWbABwWHIEXwCHYmUiwik",
-    authDomain: "atvbiblioteca.firebaseapp.com",
-    projectId: "atvbiblioteca",
-    storageBucket: "atvbiblioteca.appspot.com",
-    messagingSenderId: "61615691749",
-    appId: "1:61615691749:web:6ced927423b33754f8810c",
-    measurementId: "G-C0VHPF86D5"
+    apiKey: "AIzaSyBflsrW632sJEYJcaBhlyW9vgEaiEQP9Ho",
+    authDomain: "atidadebiblioteca.firebaseapp.com",
+    projectId: "atidadebiblioteca",
+    storageBucket: "atidadebiblioteca.appspot.com",
+    messagingSenderId: "782275434334",
+    appId: "1:782275434334:web:b503de12a9320322a561cf"
   };
 //funcoes no controller e no handller tudo as rota
 

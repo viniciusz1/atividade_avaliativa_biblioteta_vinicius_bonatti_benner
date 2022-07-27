@@ -7,13 +7,13 @@ async function adicionarLivro(dadosParametro){//Só funciona se o autor existir
         titulo: dadosParametro.titulo,
         editora: dadosParametro.editora //Verificar se existe
     })
+    await crud.save('editoras', dadosParametro.editora, {nome: dadosParametro.nomeEditora})
     for(let i of dadosParametro.autor){
         if(await autorHandler.verificaSeAutorExiste(i)){
-            let dadosAutoresLivro = {
+            await crud.save('autorElivro', null, {
                 autor: i,
                 isbn: dadosParametro.isbn
-               }
-            await crud.save('autorElivro', null, dadosAutoresLivro)
+               })
         }else{
             console.log("id ", i, "de Autor, não existe")
         }

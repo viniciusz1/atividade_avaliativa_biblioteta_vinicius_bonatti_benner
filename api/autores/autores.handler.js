@@ -9,7 +9,7 @@ async function adicionarAutor(dadosParametro){
 }
 
 async function verificaSeAutorExiste(id){
-    const autor = await buscarAutor();
+    const autor = await buscarAutores();
     return autor.some(e => e.id == id);
 }
 async function buscarAutores(){     
